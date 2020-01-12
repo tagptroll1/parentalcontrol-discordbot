@@ -62,6 +62,13 @@ class Bot(metaclass=YAMLGetter):
     token: str
 
 
+class People(metaclass=YAMLGetter):
+    section = "guild"
+    subsection = "people"
+
+    owner: int
+
+
 class Emojis(metaclass=YAMLGetter):
     section = "emojis"
 

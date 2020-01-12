@@ -1,7 +1,7 @@
 from discord import Embed, Member, RawReactionActionEvent, Role
 from discord.ext import commands
 
-from bot.constants import Guild, Roles, Channels, Emojis
+from bot.constants import Channels, Emojis, Guild, People, Roles
 
 
 class RoleDistributor(commands.Cog):
@@ -60,6 +60,10 @@ class RoleDistributor(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: RawReactionActionEvent):
         await self.ensure_variables()
+
+        # ignore owner
+        if payload.user_id == People.owner:
+            return
 
         emoji = payload.emoji
         message_id = payload.message_id
